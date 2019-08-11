@@ -1,1 +1,5 @@
 # AndroidStadySportClubWithDBSQLite
+ContentProvider/UriMatcher
+ListView/CursorAdapter
+CursorLoader
+OptionsMenu/onPrepareOptionsMenu
