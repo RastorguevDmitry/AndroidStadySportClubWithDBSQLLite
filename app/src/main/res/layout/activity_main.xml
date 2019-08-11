@@ -6,8 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<TextView
-    android:id="@+id/dataTextView"
+<ListView
+    android:id="@+id/dataListView"
     android:layout_alignParentTop="true"
     android:layout_alignParentStart="true"
     android:layout_width="match_parent"
@@ -25,5 +25,6 @@
         android:layout_marginBottom="40dp"
         android:clickable="true"
         app:srcCompat="@drawable/ic_person_add_white_24dp"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:focusable="true" />
 </RelativeLayout>
