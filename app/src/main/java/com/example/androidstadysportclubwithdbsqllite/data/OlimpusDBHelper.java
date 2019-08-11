@@ -15,11 +15,12 @@ public class OlimpusDBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CREATE_MEMBERS_TABLE = "CREATE TABLE " + MemberEntry.TABLE_NAAME + "(" +
-                MemberEntry.KEY_ID + " INTEGER PRIMARY KEY," +
-                MemberEntry.KEY_FIRST_NAME + " TEXT," +
-                MemberEntry.KEY_GENDER + " INTEGER NOT NULL," +
-                MemberEntry.KEY_SPORTS + " TEXT)";
+        String CREATE_MEMBERS_TABLE = "CREATE TABLE " + MemberEntry.TABLE_NAME + "(" +
+                MemberEntry._ID + " INTEGER PRIMARY KEY," +
+                MemberEntry.COLUMN_FIRST_NAME + " TEXT," +
+                MemberEntry.COLUMN_LAST_NAME + " TEXT," +
+                MemberEntry.COLUMN_GENDER + " INTEGER NOT NULL," +
+                MemberEntry.COLUMN_SPORTS + " TEXT)";
 
         sqLiteDatabase.execSQL(CREATE_MEMBERS_TABLE);
     }

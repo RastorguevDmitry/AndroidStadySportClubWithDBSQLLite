@@ -1,5 +1,8 @@
 package com.example.androidstadysportclubwithdbsqllite;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -9,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +26,7 @@ public class AddMemberActivity extends AppCompatActivity {
 
     private EditText firstNameEditText;
     private EditText lastNameEditText;
-    private EditText groupEditText;
+    private EditText sportEditText;
     private Spinner genderSpiner;
     private int gender = 0; //0 - нет данных, 1 - м, 2 - Ж
     private ArrayAdapter spinerAdapter;
@@ -35,14 +39,14 @@ public class AddMemberActivity extends AppCompatActivity {
 
         firstNameEditText = findViewById(R.id.firstNameEditText);
         lastNameEditText = findViewById(R.id.lastNameEditText);
-        groupEditText = findViewById(R.id.groupEditText);
+        sportEditText = findViewById(R.id.sportEditText);
         genderSpiner = findViewById(R.id.genderSpiner);
 
 
         spinnerArrayList = new ArrayList();
         spinnerArrayList.add("Unknown");
         spinnerArrayList.add("Male");
-        spinnerArrayList.add("Femail");
+        spinnerArrayList.add("Female");
 
         spinerAdapter = new ArrayAdapter(this,
                 android.R.layout.simple_spinner_item, spinnerArrayList);
@@ -79,6 +83,7 @@ public class AddMemberActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.save_member:
+                insertMember();
                 return true;
 
             case R.id.delit_member:
@@ -90,4 +95,26 @@ public class AddMemberActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    private void insertMember() {
+        String firstName = firstNameEditText.getText().toString().trim();
+        String LastName = lastNameEditText.getText().toString().trim();
+        String sport = sportEditText.getText().toString().trim();
+
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ClubOlimpusContract.MemberEntry.COLUMN_FIRST_NAME, firstName);
+        contentValues.put(ClubOlimpusContract.MemberEntry.COLUMN_LAST_NAME, LastName);
+        contentValues.put(ClubOlimpusContract.MemberEntry.COLUMN_SPORTS, sport);
+        contentValues.put(ClubOlimpusContract.MemberEntry.COLUMN_GENDER, gender);
+
+        ContentResolver contentResolver = getContentResolver();
+        Uri uri = contentResolver.insert(ClubOlimpusContract.MemberEntry.CONTENT_URI, contentValues);
+
+        if (uri == null) {
+            Toast.makeText(this, "Insertion in the tsble faleed for " + uri, Toast.LENGTH_LONG).show();
+        } else  Toast.makeText(this, "Data save ", Toast.LENGTH_LONG).show();
+    }
+
 }

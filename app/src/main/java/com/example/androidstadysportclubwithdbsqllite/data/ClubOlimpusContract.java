@@ -23,12 +23,12 @@ public final class ClubOlimpusContract {
 
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_MEMBERS);
 
-        public static final String TABLE_NAAME = "members";
-        public static final String KEY_ID = BaseColumns._ID;
-        public static final String KEY_FIRST_NAME = "firstName";
-        public static final String KEY_LAST_NAME = "lastName";
-        public static final String KEY_GENDER = "gender";
-        public static final String KEY_SPORTS = "sport";
+        public static final String TABLE_NAME = "members";
+        public static final String _ID = BaseColumns._ID;
+        public static final String COLUMN_FIRST_NAME = "firstName";
+        public static final String COLUMN_LAST_NAME = "lastName";
+        public static final String COLUMN_GENDER = "gender";
+        public static final String COLUMN_SPORTS = "sport";
 
         public static final int GENDER_UNKNOWN = 0;
         public static final int GENDER_MALE = 1;
